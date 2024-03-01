@@ -8,6 +8,11 @@ addition() {
 	echo "${sum}"
 }
 
+subtraction() {
+	diff=$(($1 - $2))
+	echo $diff
+}
+
 while :
 do
 	read -p "Enter operation (1) Addition, (2) Subtraction, (3) Division, (4) Multiplication, (5) Exit program" OPERATION
@@ -18,7 +23,12 @@ do
 			result=$(addition "$@")
 			echo $result
 			;;
-		2) echo Subtraction 	;;
+		2) echo  	
+			read -p "Enter two numbers: " input_string
+			set -- $input_string
+			result=$(subtraction "$@")
+			echo $result
+			;;
 		3) echo Division 	;;
 		4) echo Multiplication	;;
 		5) exit			;;
