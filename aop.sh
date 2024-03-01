@@ -13,6 +13,11 @@ subtraction() {
 	echo $diff
 }
 
+division() {
+	quo=$(($1 / $2))
+	echo $quo
+}
+
 while :
 do
 	read -p "Enter operation (1) Addition, (2) Subtraction, (3) Division, (4) Multiplication, (5) Exit program" OPERATION
@@ -29,7 +34,12 @@ do
 			result=$(subtraction "$@")
 			echo $result
 			;;
-		3) echo Division 	;;
+		3) echo 
+			read -p "Enter two numbers: " input_string
+			set -- $input_string
+			result=$(division "$@")
+			echo $result
+			;;
 		4) echo Multiplication	;;
 		5) exit			;;
 		*) echo "${OPERATION} is an invalid input."	;;
