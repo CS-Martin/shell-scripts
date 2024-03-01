@@ -18,6 +18,14 @@ division() {
 	echo $quo
 }
 
+multiplication() {
+	prod=1
+	for i in $@; do
+		prod=$(( prod * i ))
+	done
+	echo $prod
+}
+
 while :
 do
 	read -p "Enter operation (1) Addition, (2) Subtraction, (3) Division, (4) Multiplication, (5) Exit program" OPERATION
@@ -40,7 +48,12 @@ do
 			result=$(division "$@")
 			echo $result
 			;;
-		4) echo Multiplication	;;
+		4) echo
+			read -p "Enter numbers separated by spaces: " input_string
+			set -- $input_string
+			result=$(multiplication "$@")
+			echo $result
+			;;
 		5) exit			;;
 		*) echo "${OPERATION} is an invalid input."	;;
 	esac 
