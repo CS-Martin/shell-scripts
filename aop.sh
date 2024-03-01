@@ -1,30 +1,22 @@
 #!/bin/sh
 
-addition() 
-{
-	echo "Add two numbers:"
-	echo "Enter"
-	read a
-	read b
-
-	res=$(( a + b ))
-	echo "${res}"
+addition() {
+	sum=0		
+	for i in $@; do
+		sum=$(( sum + i ))
+	done
+	echo "${sum}"
 }
-
-echo -e "Enter operation\n"
-echo "(1) Addition"
-echo "(2) Subtraction"
-echo "(3) Division"
-echo "(4) Multiplication"
-echo "(5) Exit program"
 
 while :
 do
-	read OPERATION
+	read -p "Enter operation (1) Addition, (2) Subtraction, (3) Division, (4) Multiplication, (5) Exit program" OPERATION
 	case $OPERATION in
 		1) echo 
-			read string
-			addition string
+			read -p "Enter numbers separated by spaces: " input_string
+			set -- $input_string
+			result=$(addition "$@")
+			echo $result
 			;;
 		2) echo Subtraction 	;;
 		3) echo Division 	;;
@@ -33,4 +25,3 @@ do
 		*) echo "${OPERATION} is an invalid input."	;;
 	esac 
 done
-
